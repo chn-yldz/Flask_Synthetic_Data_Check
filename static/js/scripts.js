@@ -16,8 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Dosya boyutu 2MB\'dan büyük olamaz!');
             event.preventDefault(); // Yüklemeyi durdur
         } else {
-            // Eğer her şey doğruysa dosya yüklenebilir
-            alert('Dosya yükleniyor ve analiz ediliyor...');
+            // CSV dosyasının satır sayısını kontrol edelim
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const rows = text.split('\n');
+                if (rows.length < 10) {
+                    alert('Modelin eğitilebilmesi için en az 10 satır veri gerekli.');
+                    event.preventDefault(); // Yüklemeyi durdur
+                } else {
+                    alert('Dosya yükleniyor ve analiz ediliyor...');
+                }
+            };
+            reader.readAsText(file);
         }
     });
 });

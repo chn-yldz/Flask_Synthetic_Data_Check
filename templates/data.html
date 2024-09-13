@@ -38,7 +38,7 @@
         <h1>Yüklenen Veriler</h1>
     </div>
 
-    <!-- Verileri Gösterme -->
+    <!-- Yüklenen Verileri Gösterme (Maskelenmeden) -->
     <div class="container">
         <table class="table table-hover">
             <thead>
@@ -75,6 +75,8 @@
     <div class="container text-center">
         <h1>Yüklenen Verilerin Analizi</h1>
     </div>
+
+    <!-- Yüklenen Verilerin Analizi (Maskelenmiş) -->
     <div class="container">
         <table class="table table-hover">
             <thead>
@@ -83,17 +85,15 @@
                     <th>Soyisim</th>
                     <th>E-Mail</th>
                     <th>Tarih</th>
-                    <th>GUID</th> <!-- GUID sütunu -->
                 </tr>
             </thead>
             <tbody>
-                {% for row in data %}
+                {% for row in masked_data %}
                 <tr>
                     <td>{{ row.first_name }}</td>
                     <td>{{ row.last_name }}</td>
                     <td>{{ row.email }}</td>
                     <td>{{ row.date }}</td>
-                    <td>{{ row.guid }}</td> <!-- GUID gösterimi -->
                 </tr>
                 {% endfor %}
             </tbody>

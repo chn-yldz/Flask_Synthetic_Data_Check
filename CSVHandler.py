@@ -28,9 +28,8 @@ class CSVHandler:
             csv_reader = csv.reader(csvfile)
             next(csv_reader)  # Başlık satırını atla
             for row in csv_reader:
-                # İsim ve soyisim ayrımı yapılır
-                first_name, last_name = row[0], row[1]  # İlk iki sütun isim ve soyisim
-                email = row[2]  # Üçüncü sütun email
-                date = row[3]   # Dördüncü sütun tarih
+                if len(row) < 4:  # Her satırda en az 4 sütun (isim, soyisim, email, tarih) olmalı
+                    continue  # Eksik veri varsa satırı atla
+                first_name, last_name, email, date = row[0], row[1], row[2], row[3]
                 data.append([first_name, last_name, email, date])
         return data
